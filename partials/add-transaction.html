@@ -10,9 +10,9 @@
             </div>
         </md-toolbar>
         <md-dialog-content class="md-padding">
-            <md-input-container flex="" class="input-field">
+            <md-input-container flex="" class="input-field" required>
                 <label>Description</label>
-                <input ng-model="descrption" required>
+                <input type="text" ng-model="descrption">
             </md-input-container>
             <div class="payee-container">
                 <md-label class="label" layout="row"><b>Payee</b></md-label>
@@ -22,7 +22,8 @@
                                      required>
                             {{ item.username }}
                         </md-checkbox>
-                        <md-input-container class="input-field payee-cost-input" ng-show="exists(item, selected)">
+                        <md-input-container class="input-field payee-cost-input" ng-show="exists(item, selected)"
+                                            required>
                             <label>Cost</label>
                             <input type="text"
                                    onkeypress='return event.charCode >= 48 && event.charCode <= 57'
@@ -36,7 +37,7 @@
                 <md-label class="label" layout="row"><b>Participants</b></md-label>
                 <div layout="row" layout-wrap flex>
                     <div flex="50" ng-model="participents" ng-repeat="item in items">
-                        <md-checkbox ng-model="item.participants">
+                        <md-checkbox ng-model="item.participants" required>
                             {{ item.username }}
                         </md-checkbox>
                     </div>
@@ -45,12 +46,11 @@
             <md-divider></md-divider>
             <div flex-gt-xs>
                 <h4>Date</h4>
-                <md-datepicker ng-model="date" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                <md-datepicker ng-model="date" md-placeholder="Enter date" md-open-on-focus required></md-datepicker>
             </div>
             <md-divider></md-divider>
             <md-content class="action-button-container">
-                <md-button type="button" class="md-raised md-primary" ng-click="addTransacion()"
-                           ng-disabled="shouldEnable">ADD
+                <md-button type="button" class="md-raised md-primary" ng-click="addTransacion()">ADD
                 </md-button>
 
                 <md-button type="button" class="md-raised md-primary"

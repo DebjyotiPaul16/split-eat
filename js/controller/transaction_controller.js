@@ -19,7 +19,6 @@
             $scope.shouldEnable = false;
         };
 
-
         $scope.addTransacion = function () {
             var config = {
                 headers: {
@@ -54,12 +53,17 @@
                     payees.push({paidAmount: parseInt(elem.cost, 10), payee: elem.userId});
                 }
             });
-            return {
-                "transactionDate": $scope.date.toLocaleDateString(),
-                "description": $scope.descrption,
-                "participants": participants,
-                "cost": payees,
-                "groupieId": "panchobanjyon"
+            if (!$scope.date || participants.length === 0 || payees.length === 0 || !$scope.descrption) {
+                alert("Enter proper details first");
+                return;
+            } else {
+                return {
+                    "transactionDate": $scope.date.toLocaleDateString(),
+                    "description": $scope.descrption,
+                    "participants": participants,
+                    "cost": payees,
+                    "groupieId": "panchobanjyon"
+                }
             }
         };
         $scope.toggle = function (item, list) {
@@ -76,7 +80,6 @@
         };
 
         $scope.$watch($scope.descrption, function () {
-            console.log("okk", $scope.descrption);
             if ($scope.descrption) {
                 $scope.shouldEnable = true;
             }
